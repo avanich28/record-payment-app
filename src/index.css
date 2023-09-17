@@ -1,11 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap");
 
 :root {
-  --background-color: rgb(255, 238, 202);
-  --background-payment: whitesmoke;
-  --color-total: rgb(182, 1, 1);
-  --color-border-input: orange;
-  --border-color-focus: orangered;
+  --lightest-color: #f7fee7;
+  --light-color: #ecfccb;
+  --medium-color: #84cc16;
+  --dark-color: #064e3b;
+  --hover-color: white;
 }
 
 * {
@@ -16,26 +16,32 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: "Courier Prime", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  padding: 13vh 0;
 }
 
 .app {
-  padding: 30px;
   display: grid;
   grid-template-columns: auto auto;
-  grid-template-rows: repeat(2, auto) 1fr;
+  grid-template-rows: repeat(4, auto) 1fr;
   grid-template-areas:
     "logo logo"
     "list total"
-    "list form";
+    "list form"
+    "list ."
+    "list .";
   gap: 10px;
   justify-content: center;
-  min-width: 715px;
+  min-width: 850px;
+}
+
+.app > button {
+  grid-column-start: 2;
 }
 
 .logo {
@@ -45,9 +51,14 @@ body {
   margin-bottom: 10px;
 }
 
+.logo > img {
+  height: 60px;
+  width: 64px;
+}
+
 .list,
 .total,
-.form {
+.form-list {
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -57,27 +68,29 @@ body {
 }
 
 .total,
-.form {
-  background-color: var(--background-color);
+.form-list {
+  background-color: var(--light-color);
 }
 
 .total {
   grid-area: total;
   height: 100px;
-  width: 300px;
+  width: 335px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 0.9rem;
 }
 
 .total span {
   float: right;
-  color: var(--color-total);
+  color: var(--dark-color);
 }
 
 .list {
   grid-area: list;
+  height: 423px;
+  width: 500px;
+  background-color: var(--light-color);
 }
 
 ul {
@@ -100,7 +113,8 @@ li > p:nth-of-type(1) {
 
 .detail {
   font-size: 0.6rem;
-  padding: 0 8px;
+  padding: 3px 8px;
+  border-bottom: 2px solid var(--dark-color);
 }
 
 li {
@@ -109,7 +123,7 @@ li {
 }
 
 li:hover {
-  background-color: var(--background-color);
+  background-color: var(--hover-color);
 }
 
 .sort-clear {
@@ -122,8 +136,8 @@ li:hover {
 select {
   padding: 3px 20px;
   border-radius: 12px;
-  background-color: brown;
-  color: white;
+  background-color: var(--dark-color);
+  color: var(--lightest-color);
   text-align: center;
 }
 
@@ -131,7 +145,7 @@ select {
   align-self: center;
 }
 
-.form {
+.form-list {
   grid-area: form;
   display: grid;
   grid-template-columns: repeat(2, auto);
@@ -140,8 +154,12 @@ select {
   padding: 20px;
 }
 
-.form > button {
+.form-list > button {
   grid-column-start: 2;
+}
+
+.form-list i {
+  font-size: 20px;
 }
 
 input {
@@ -149,9 +167,10 @@ input {
   height: 30px;
   padding: 0 5px;
   text-align: center;
-  border: 1px solid var(--color-border-input);
+  border: 1px solid var(--medium-color);
   font-family: inherit;
   outline: none;
+  border-radius: 5px;
 }
 
 input[type="text"] {
@@ -164,21 +183,22 @@ input[type="date"] {
 input:focus,
 select:focus {
   outline: none;
-  box-shadow: inset 0 0 0 1.3px var(--border-color-focus);
+  box-shadow: inset 0 0 0 1.3px var(--medium-color);
 }
 
 button {
-  background-color: var(--color-border-input);
+  background-color: var(--dark-color);
   padding: 5px 13px;
   border: none;
   border-radius: 20px;
   text-transform: uppercase;
   font-size: 0.7rem;
   font-weight: bold;
+  color: var(--lightest-color);
 }
 
 button:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 button:active {
